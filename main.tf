@@ -66,12 +66,13 @@ resource "azurerm_network_interface_security_group_association" "sandbox-nic-ass
 
 #Create the VM
 resource "azurerm_linux_virtual_machine" "sandbox-Lvm" {
-  name                = "github-runner"
-  resource_group_name = data.azurerm_resource_group.sandbox-rg.name
-  location            = var.location
-  size                = "Standard_B1s"
-  admin_username      = "adminuser"
-  admin_password      = var.adminpass
+  name                            = "github-runner"
+  resource_group_name             = data.azurerm_resource_group.sandbox-rg.name
+  location                        = var.location
+  size                            = "Standard_B1s"
+  admin_username                  = "adminuser"
+  admin_password                  = var.adminpass
+  disable_password_authentication = false
   network_interface_ids = [
     azurerm_network_interface.sandbox-nic.id,
   ]
